@@ -1,0 +1,177 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+
+    --corBody: #dec5fe;
+    --corHeader: #372243;
+    --CorFoooter: var(--corHeader);
+    --corContainerCartas: #e2e2e4;
+    --corH1: rgb(239, 239, 239);
+    --alturaCarta: 9em;
+    --larguraCarta: 6em;
+
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 6em max-content 3em;
+    background-color: var(--corBody);
+    justify-items: center;
+}
+
+header{
+    width: 100%;
+    background-color: var(--corHeader);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    color: var(--corH1);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1em;
+    max-width: 1500px;
+}
+
+.carta{
+    height: var(--alturaCarta);
+    width: var(--larguraCarta);
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    transform-style: preserve-3d;
+    position: relative;
+    transition: transform 1s;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
+
+}
+
+#containerCartas{
+    width: 100%;
+    background-color: var(--corContainerCartas);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(20%, 7em));
+    gap: 1em;
+    padding: 2em;
+}
+
+footer{
+    width: 100%;
+    background-color: var(--CorFoooter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+a{
+    color: white;
+}
+
+#blur{
+    display: none;
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+.clicked{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+#close{
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 3;
+    display: none;
+    border: 2px solid gray;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(154, 154, 154, 0.477);
+}
+
+#close:hover{
+    transform: scale(1.20);
+    transition: .3s;
+}
+
+.frente{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+.atras{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-image: url("imagens/FundoCarta.png");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: none;
+}
+
+
+.animacaoViraCarta{
+    transform: rotateY(180deg);
+}
+
+.correta{
+    animation: acertou 1s normal forwards;
+    cursor: default;
+}
+
+
+@keyframes acertou {
+    0%{
+        background-color: white;
+    }
+    100%{
+        background-color: lightgray;
+        color: rgb(97, 97, 97);
+        box-shadow: none
+    }
+}
